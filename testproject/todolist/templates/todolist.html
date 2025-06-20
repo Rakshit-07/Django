@@ -1,4 +1,31 @@
 {% extends 'base.html' %} {% block title %}
 <title>This is todo page</title>
-{%endblock title %} {%block content%} {% for obj in all_task %} {{ obj.task }} |
-{{ obj.flag }} <br />{% endfor %} {%endblock content%}
+{%endblock title %} {%block content%}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Task</th>
+      <th scope="col">Done</th>
+      <th scope="col">Delete</th>
+      <th scope="col">Edit</th>
+    </tr>
+  </thead>
+  {% for obj in all_task %}
+  <tbody>
+    <tr>
+      <td>{{obj.id}}</td>
+      <td>{{obj.task}}</td>
+      {% if obj.flag == True %}
+      <td class="table-success">{{obj.flag}}</td>
+      {% else %}
+      <td class="table-danger">{{obj.flag}}</td>
+      {% endif %}
+      <td>Delete</td>
+      <td>Edit</td>
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>
+{%endblock content%}
